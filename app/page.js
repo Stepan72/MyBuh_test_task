@@ -7,7 +7,7 @@ export default function Home() {
       <header className="m-10 mt-20">
         <h1 className="text-center">Мои организации</h1>
       </header>
-      <div id="container" className="mx-80 flex flex-wrap gap-2">
+      <div id="container" className="mx-64 flex flex-wrap gap-2">
         {data.map((el) => {
           return <FirmCard />;
         })}
