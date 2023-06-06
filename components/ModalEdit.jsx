@@ -1,8 +1,10 @@
 "use client";
 import Button from "./Button";
 import React, { useState, useRef } from "react";
+import SimpleForm from "./SimpleForm";
+const ownType = ["ТОО", "ИП", "Прочие"];
 
-function ModalEdit() {
+function ModalEdit({ editElement, setElToEdit }) {
   const [activeButton, setActiveButton] = useState(0);
 
   return (
@@ -12,16 +14,26 @@ function ModalEdit() {
           Редактировать данные организации
         </h2>
         <div className="flex flex-row w-[450px] h-[50px] gap-2">
-          <Button type="button" text="ТОО" id={0} activeButton={activeButton} />
-          <Button type="button" text="ИП" id={1} activeButton={activeButton} />
-          <Button
-            type="button"
-            text="Прочие"
-            id={2}
-            activeButton={activeButton}
-            setActiveButton={setActiveButton}
-          />
+          {ownType.map((el, index) => {
+            return (
+              <Button
+                type="button"
+                text={el}
+                key={index}
+                id={index}
+                activeButton={activeButton}
+                setActiveButton={setActiveButton}
+              />
+            );
+          })}
         </div>
+        {(activeButton == 0 || activeButton == 1) && (
+          <SimpleForm
+            editElement={editElement}
+            setElToEdit={setElToEdit}
+            type={ownType[activeButton]}
+          />
+        )}
       </div>
     </div>
   );

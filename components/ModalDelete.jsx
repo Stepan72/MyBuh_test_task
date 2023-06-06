@@ -10,7 +10,7 @@ function ModalDelete(props) {
   }
 
   return (
-    <div className="fixed top-[250px] left-[480px] w-[500px] h-[200px] z-50 overflow-hidden text-center bg-neutral-50 rounded-[10px] flex flex-col  items-center">
+    <div className="fixed top-[200px] left-[480px] w-[500px] h-[200px] z-50 overflow-hidden text-center bg-neutral-50 rounded-[10px] flex flex-col  items-center">
       <div className="flex justify-end w-[450px] mt-5 mb-1">
         <MdOutlineClose size={24} onClick={cancelHandler} />
       </div>

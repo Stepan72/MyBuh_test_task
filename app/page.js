@@ -14,10 +14,9 @@ export default function Home() {
   const [editState, setEditState] = useState(false);
   const [elToEdit, setElToEdit] = useState(undefined);
 
-  function editHandler(id) {
-    // console.log(id);
+  function editHandler(element) {
     setEditState(true);
-    setElToEdit(id);
+    setElToEdit(element);
   }
 
   function cancelEditHandler() {
@@ -61,6 +60,7 @@ export default function Home() {
               logo={el.logo}
               editFun={editHandler}
               deleteFun={deleteHandler}
+              element={el}
             />
           );
         })}
@@ -77,7 +77,7 @@ export default function Home() {
       {editState && (
         <div>
           <Backdrop cancel={cancelEditHandler} />
-          <ModalEdit />
+          <ModalEdit editElement={elToEdit} setElToEdit={setElToEdit} />
         </div>
       )}
     </div>

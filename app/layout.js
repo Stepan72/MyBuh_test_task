@@ -1,4 +1,5 @@
 import "./../styles/globals.css";
+import ContextProvider from "@/context/ContextProvider";
 
 export const metadata = {
   title: "MyBuh test",
@@ -11,7 +12,9 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/icon.png" />
       </head>
-      <body>{children}</body>
+      <body>
+        <ContextProvider>{children}</ContextProvider>
+      </body>
     </html>
   );
 }

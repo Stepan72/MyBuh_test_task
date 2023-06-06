@@ -2,7 +2,7 @@
 import React from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
-function FirmCard({ name, innNumber, logo, editFun, deleteFun, id }) {
+function FirmCard({ name, innNumber, logo, editFun, deleteFun, id, element }) {
   return (
     <li className="h-20 m-1 flex flex-row justify-between border shadow-lg rounded-md hover:border-blue-500 w-[448px] list-none">
       <div className="flex flex-row">
@@ -28,7 +28,7 @@ function FirmCard({ name, innNumber, logo, editFun, deleteFun, id }) {
           size={20}
           className="text-blue-400"
           onClick={() => {
-            editFun(id);
+            editFun(element);
           }}
         />
         <FaTrashAlt
