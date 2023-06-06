@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-
-function SimpleForm({ editElement, setElToEdit, type }) {
-  const [inn, setInn] = useState(editElement.company_tin);
-  const [name, setName] = useState(editElement.company_name);
+import React, { useState, useContext } from "react";
+import FirmContext from "@/context/firmContext";
+function SimpleForm({ type, activeButton }) {
+  const { elToEdit, handleFirmsChange, setEditState } = useContext(FirmContext);
+  const [inn, setInn] = useState(elToEdit.company_tin);
+  const [name, setName] = useState(elToEdit.company_name);
 
   function changeInnHandler(e) {
     setInn(e.target.value);
@@ -14,12 +15,18 @@ function SimpleForm({ editElement, setElToEdit, type }) {
 
   function changeFirmHandler(e) {
     e.preventDefault();
-    setElToEdit();
+    handleFirmsChange({
+      ...elToEdit,
+      company_name: name,
+      company_tin: inn,
+      ownership_id: activeButton,
+    });
+    setEditState(false);
   }
 
   return (
     <form
-      className="w-[450px] mt-[40px] h-[200px] flex flex-col"
+      className="w-[450px] mt-[40px] h-[200px] flex flex-col "
       onSubmit={changeFirmHandler}
     >
       <p className="text-left text-sm text-gray-500 mb-2">Введите ИИН/БИН</p>
@@ -42,7 +49,14 @@ function SimpleForm({ editElement, setElToEdit, type }) {
           onChange={changeNameHandler}
         />
       </div>
-      <button></button>
+      <div className="flex justify-center mt-8 ">
+        <button
+          type="submit"
+          className="text-white w-[160px] h-[40px] bg-green-600 rounded-md font-light "
+        >
+          Сохранить
+        </button>
+      </div>
     </form>
   );
 }

@@ -1,11 +1,22 @@
 "use client";
 import Button from "./Button";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import SimpleForm from "./SimpleForm";
+import FirmContext from "@/context/firmContext";
 const ownType = ["ТОО", "ИП", "Прочие"];
+let ownTypeIndex;
 
-function ModalEdit({ editElement, setElToEdit }) {
-  const [activeButton, setActiveButton] = useState(0);
+function ModalEdit() {
+  const { elToEdit } = useContext(FirmContext);
+  console.log(elToEdit);
+  if (elToEdit.ownership_id == 0) {
+    ownTypeIndex = 0;
+  } else if (elToEdit.ownership_id == 1) {
+    ownTypeIndex = 1;
+  } else {
+    ownTypeIndex = 2;
+  }
+  const [activeButton, setActiveButton] = useState(ownTypeIndex);
 
   return (
     <div className="fixed top-[120px] left-[480px] w-[500px] h-[400px] z-50 overflow-hidden text-center bg-neutral-50 rounded-[10px] flex flex-col items-center">
@@ -29,9 +40,8 @@ function ModalEdit({ editElement, setElToEdit }) {
         </div>
         {(activeButton == 0 || activeButton == 1) && (
           <SimpleForm
-            editElement={editElement}
-            setElToEdit={setElToEdit}
             type={ownType[activeButton]}
+            activeButton={activeButton}
           />
         )}
       </div>

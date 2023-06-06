@@ -26,14 +26,14 @@ function FirmCard({ name, innNumber, logo, editFun, deleteFun, id, element }) {
       <div className="mr-6 py-5 flex flex-row gap-3 items-center">
         <FaEdit
           size={20}
-          className="text-blue-400"
+          className="text-blue-400 cursor-pointer"
           onClick={() => {
             editFun(element);
           }}
         />
         <FaTrashAlt
           size={20}
-          className="text-red-400"
+          className="text-red-400 cursor-pointer"
           onClick={() => {
             deleteFun(id);
           }}

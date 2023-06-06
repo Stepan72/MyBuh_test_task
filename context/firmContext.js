@@ -2,7 +2,13 @@
 import React from "react";
 
 const FirmContext = React.createContext({
-  firmData: [],
+  firmsData: [],
+  elToEdit: {},
+  editState: false,
+  handleFirmsEdit: () => {},
+  handleElToEdit: () => {},
+  handleFirmsChange: () => {},
+  setEditState: () => {},
 });
 
 export default FirmContext;

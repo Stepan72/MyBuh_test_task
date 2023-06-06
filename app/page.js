@@ -1,45 +1,50 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import FirmCard from "@/components/FirmCard";
-const data = [1, 2, 3, 4, 5, 6, 7];
 import { companies } from "@/data/companies";
 import Backdrop from "@/components/Backdrop";
 import ModalDelete from "@/components/ModalDelete";
 import ModalEdit from "@/components/ModalEdit";
+import FirmContext from "@/context/firmContext";
 
 export default function Home() {
-  const [firmsData, setFirmsData] = useState(companies);
+  const {
+    firmsData,
+    handleFirmsEdit,
+    handleElToEdit,
+    editState,
+    setEditState,
+  } = useContext(FirmContext);
+
   const [deleteState, setDeleteState] = useState(false);
   const [elToDel, setElToDel] = useState(undefined);
-  const [editState, setEditState] = useState(false);
-  const [elToEdit, setElToEdit] = useState(undefined);
 
+  //оставляю
   function editHandler(element) {
     setEditState(true);
-    setElToEdit(element);
+    handleElToEdit(element);
   }
-
+  // оставляю
   function cancelEditHandler() {
     setEditState(false);
     setElToDel(null);
   }
-
+  /// оставляю
   function deleteHandler(id) {
     setDeleteState(true);
     setElToDel(id);
   }
-
+  /// Оставляю
   function cancelDeleteHandler() {
     setDeleteState(false);
     setElToDel(null);
   }
-
+  /// оставляю
   function confirmDeleteHandler() {
     const filteredFirms = firmsData.filter((el) => {
       return el.company_id !== elToDel;
     });
-    setFirmsData(filteredFirms);
-    console.log(filteredFirms);
+    handleFirmsEdit(filteredFirms);
     setElToDel(null);
     setDeleteState(false);
   }
@@ -77,7 +82,7 @@ export default function Home() {
       {editState && (
         <div>
           <Backdrop cancel={cancelEditHandler} />
-          <ModalEdit editElement={elToEdit} setElToEdit={setElToEdit} />
+          <ModalEdit />
         </div>
       )}
     </div>
