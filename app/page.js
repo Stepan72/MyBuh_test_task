@@ -5,30 +5,44 @@ const data = [1, 2, 3, 4, 5, 6, 7];
 import { companies } from "@/data/companies";
 import Backdrop from "@/components/Backdrop";
 import ModalDelete from "@/components/ModalDelete";
+import ModalEdit from "@/components/ModalEdit";
 
 export default function Home() {
   const [firmsData, setFirmsData] = useState(companies);
   const [deleteState, setDeleteState] = useState(false);
   const [elToDel, setElToDel] = useState(undefined);
-  function editHandler() {}
+  const [editState, setEditState] = useState(false);
+  const [elToEdit, setElToEdit] = useState(undefined);
+
+  function editHandler(id) {
+    // console.log(id);
+    setEditState(true);
+    setElToEdit(id);
+  }
+
+  function cancelEditHandler() {
+    setEditState(false);
+    setElToDel(null);
+  }
 
   function deleteHandler(id) {
     setDeleteState(true);
     setElToDel(id);
-    // const filteredFirms = firmsData.filter((el) => {
-    //   return el.company_id !== id;
-    // });
-    // setFirmsData(filteredFirms);
   }
 
   function cancelDeleteHandler() {
-    console.log("CANCEL DELETE");
-    // setDeleteState(false);
-    // setElToDel(undefined);
+    setDeleteState(false);
+    setElToDel(null);
   }
 
   function confirmDeleteHandler() {
-    console.log("CONFIRM DELETE");
+    const filteredFirms = firmsData.filter((el) => {
+      return el.company_id !== elToDel;
+    });
+    setFirmsData(filteredFirms);
+    console.log(filteredFirms);
+    setElToDel(null);
+    setDeleteState(false);
   }
 
   return (
@@ -36,8 +50,8 @@ export default function Home() {
       <header className="m-10 mt-20">
         <h1 className="text-center">Мои организации</h1>
       </header>
-      <div id="container" className="mx-64 flex flex-wrap gap-2">
-        {firmsData.map((el, index) => {
+      <ul id="container" className="mx-64 flex flex-wrap gap-2">
+        {firmsData.map((el) => {
           return (
             <FirmCard
               key={el.company_id}
@@ -50,14 +64,20 @@ export default function Home() {
             />
           );
         })}
-      </div>
+      </ul>
       {deleteState && (
         <div>
-          <Backdrop />
+          <Backdrop cancel={cancelDeleteHandler} />
           <ModalDelete
             cancelConfirm={cancelDeleteHandler}
             deleteConfirm={confirmDeleteHandler}
           />
+        </div>
+      )}
+      {editState && (
+        <div>
+          <Backdrop cancel={cancelEditHandler} />
+          <ModalEdit />
         </div>
       )}
     </div>

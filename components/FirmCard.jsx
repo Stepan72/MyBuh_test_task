@@ -4,10 +4,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 function FirmCard({ name, innNumber, logo, editFun, deleteFun, id }) {
   return (
-    <div
-      className="h-20 m-1 flex flex-row justify-between border shadow-lg rounded-md hover:border-blue-500"
-      style={{ width: "28rem" }}
-    >
+    <li className="h-20 m-1 flex flex-row justify-between border shadow-lg rounded-md hover:border-blue-500 w-[448px] list-none">
       <div className="flex flex-row">
         <div className="ml-5 w-20 p-2">
           <img
@@ -27,7 +24,13 @@ function FirmCard({ name, innNumber, logo, editFun, deleteFun, id }) {
         </div>
       </div>
       <div className="mr-6 py-5 flex flex-row gap-3 items-center">
-        <FaEdit size={20} className="text-blue-400" />
+        <FaEdit
+          size={20}
+          className="text-blue-400"
+          onClick={() => {
+            editFun(id);
+          }}
+        />
         <FaTrashAlt
           size={20}
           className="text-red-400"
@@ -36,7 +39,7 @@ function FirmCard({ name, innNumber, logo, editFun, deleteFun, id }) {
           }}
         />
       </div>
-    </div>
+    </li>
   );
 }
 
