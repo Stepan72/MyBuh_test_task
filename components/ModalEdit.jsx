@@ -2,6 +2,7 @@
 import Button from "./Button";
 import React, { useState, useRef, useContext } from "react";
 import SimpleForm from "./SimpleForm";
+import ComplexForm from "./ComplexForm";
 import FirmContext from "@/context/firmContext";
 const ownType = ["ТОО", "ИП", "Прочие"];
 let ownTypeIndex;
@@ -44,6 +45,7 @@ function ModalEdit() {
             activeButton={activeButton}
           />
         )}
+        {activeButton == 2 && <ComplexForm />}
       </div>
     </div>
   );

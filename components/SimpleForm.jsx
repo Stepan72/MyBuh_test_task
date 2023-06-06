@@ -41,10 +41,12 @@ function SimpleForm({ type, activeButton }) {
         Введите название компании
       </p>
       <div className="flex flex-row items-center">
-        <p className="border-solid border-[1px] p-1 rounded-l-lg h-8">{type}</p>
+        <p className="border-solid border-[1px] p-[3px] rounded-l-lg h-8">
+          {type}
+        </p>
         <input
           type="text"
-          className="border-solid border-[1px] rounded-md h-8 px-2 w-[450px]"
+          className="border-solid border-[1px] rounded-r-lg  h-8 px-2 w-[450px]"
           value={name}
           onChange={changeNameHandler}
         />
