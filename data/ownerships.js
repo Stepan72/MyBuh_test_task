@@ -1,4 +1,4 @@
-export default ownerships = [
+export const ownerships = [
   {
     id: 1,
     code: "too",

@@ -20,7 +20,7 @@ function ModalEdit() {
   const [activeButton, setActiveButton] = useState(ownTypeIndex);
 
   return (
-    <div className="fixed top-[120px] left-[480px] w-[500px] h-[400px] z-50 overflow-hidden text-center bg-neutral-50 rounded-[10px] flex flex-col items-center">
+    <div className="fixed top-[120px] left-[480px] w-[500px] h-max z-50 overflow-hidden text-center bg-neutral-50 rounded-[10px] flex flex-col items-center">
       <div className="flex flex-col items-center justify-center mt-[25px]">
         <h2 className="text-sky-900 font-medium mb-5">
           Редактировать данные организации
@@ -41,6 +41,7 @@ function ModalEdit() {
         </div>
         {(activeButton == 0 || activeButton == 1) && (
           <SimpleForm
+            topSet="mt-[40px]"
             type={ownType[activeButton]}
             activeButton={activeButton}
           />
