@@ -71,20 +71,24 @@ export default function Home() {
         <h1 className="text-center">Мои организации</h1>
       </header>
       <ul id="container" className="mx-64 flex flex-wrap gap-2">
-        {firmsData.map((el) => {
-          return (
-            <FirmCard
-              key={el.company_id}
-              id={el.company_id}
-              name={el.company_name}
-              innNumber={el.company_tin}
-              logo={el.logo}
-              editFun={editHandler}
-              deleteFun={deleteHandler}
-              element={el}
-            />
-          );
-        })}
+        {firmsData
+          .sort((a, b) => {
+            return a.company_id - b.company_id;
+          })
+          .map((el) => {
+            return (
+              <FirmCard
+                key={el.company_id}
+                id={el.company_id}
+                name={el.company_name}
+                innNumber={el.company_tin}
+                logo={el.logo}
+                editFun={editHandler}
+                deleteFun={deleteHandler}
+                element={el}
+              />
+            );
+          })}
       </ul>
       {deleteState && (
         <div>
