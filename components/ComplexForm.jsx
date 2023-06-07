@@ -25,11 +25,11 @@ function ComplexForm() {
     let shortName = otherOwns.find((el) => {
       return el.id === elToEdit.ownership_id;
     });
-    console.log(shortName);
+    // console.log(shortName);
     let initId = otherOwns.find((el) => {
       return el.id == elToEdit.ownership_id;
     });
-    console.log(initId);
+    // console.log(initId);
     if (shortName && initId) {
       setSelectedType({
         short: shortName.short,

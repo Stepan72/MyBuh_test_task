@@ -75,7 +75,7 @@ export const ownerships = [
     id: 10,
     code: "ptr",
     full: "Потребительский кооператив",
-    short: "ОО",
+    short: "ПК",
     parent_id: 2,
     account_type: "too",
   },

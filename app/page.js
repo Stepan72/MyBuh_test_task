@@ -19,27 +19,26 @@ export default function Home() {
   const [deleteState, setDeleteState] = useState(false);
   const [elToDel, setElToDel] = useState(undefined);
 
-  //оставляю
   function editHandler(element) {
     setEditState(true);
     handleElToEdit(element);
   }
-  // оставляю
+
   function cancelEditHandler() {
     setEditState(false);
     setElToDel(null);
   }
-  /// оставляю
+
   function deleteHandler(id) {
     setDeleteState(true);
     setElToDel(id);
   }
-  /// Оставляю
+
   function cancelDeleteHandler() {
     setDeleteState(false);
     setElToDel(null);
   }
-  /// оставляю
+
   function confirmDeleteHandler() {
     const filteredFirms = firmsData.filter((el) => {
       return el.company_id !== elToDel;

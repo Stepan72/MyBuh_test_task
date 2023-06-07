@@ -9,7 +9,7 @@ let ownTypeIndex;
 
 function ModalEdit() {
   const { elToEdit } = useContext(FirmContext);
-  console.log(elToEdit);
+  //   console.log(elToEdit);
   if (elToEdit.ownership_id == 1) {
     ownTypeIndex = 0;
   } else if (elToEdit.ownership_id == 14) {

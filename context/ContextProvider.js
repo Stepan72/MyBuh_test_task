@@ -18,13 +18,14 @@ function ContextProvider({ children }) {
   }
 
   function handleFirmsChange(data) {
-    console.log(data);
+    // console.log(data);
     const firmsWithout = firmsData.filter((el) => {
       return el.company_id !== data.company_id;
     });
     setFirmsData((prevValue) => {
       return [...firmsWithout, data];
     });
+    console.log([...firmsWithout, data]);
   }
 
   const stateContext = {
