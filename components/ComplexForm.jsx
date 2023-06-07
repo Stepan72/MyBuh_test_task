@@ -1,17 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import SimpleForm from "./SimpleForm";
-import { ownerships } from "@/data/ownerships";
 import FirmContext from "@/context/firmContext";
-const otherOwns = ownerships.filter((el) => {
-  return el.parent_id == 2;
-});
 
 function ComplexForm() {
-  const { elToEdit } = useContext(FirmContext);
+  const { elToEdit, ownershipsData } = useContext(FirmContext);
   const [radioOption, setRadioOption] = useState(0);
   const [selectedType, setSelectedType] = useState({
     short: "АО",
     id: 6,
+  });
+  const otherOwns = ownershipsData.filter((el) => {
+    return el.parent_id == 2;
   });
 
   useEffect(() => {

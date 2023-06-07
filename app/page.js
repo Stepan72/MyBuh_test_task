@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect, useContext } from "react";
 import FirmCard from "@/components/FirmCard";
-import { companies } from "@/data/companies";
 import Backdrop from "@/components/Backdrop";
 import ModalDelete from "@/components/ModalDelete";
 import ModalEdit from "@/components/ModalEdit";
@@ -10,14 +9,32 @@ import FirmContext from "@/context/firmContext";
 export default function Home() {
   const {
     firmsData,
+    setFirmsData,
     handleFirmsEdit,
     handleElToEdit,
     editState,
     setEditState,
+    setOwnershipsData,
   } = useContext(FirmContext);
 
   const [deleteState, setDeleteState] = useState(false);
   const [elToDel, setElToDel] = useState(undefined);
+
+  useEffect(() => {
+    async function fetchData() {
+      let response1 = await fetch(
+        "https://raw.githubusercontent.com/arkdich/mybuh-frontend-test/main/companies.json"
+      );
+      let data1 = await response1.json();
+      setFirmsData(data1);
+      let response2 = await fetch(
+        "https://raw.githubusercontent.com/arkdich/mybuh-frontend-test/main/ownerships.json"
+      );
+      let data2 = await response2.json();
+      setOwnershipsData(data2);
+    }
+    fetchData();
+  }, []);
 
   function editHandler(element) {
     setEditState(true);

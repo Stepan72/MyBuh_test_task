@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import FirmContext from "./firmContext";
-import { companies } from "@/data/companies";
 
 function ContextProvider({ children }) {
-  const [firmsData, setFirmsData] = useState(companies);
+  const [firmsData, setFirmsData] = useState([]);
+  const [ownershipsData, setOwnershipsData] = useState([]);
   const [elToEdit, setElToEdit] = useState(null);
   const [editState, setEditState] = useState(false);
 
@@ -30,12 +30,15 @@ function ContextProvider({ children }) {
 
   const stateContext = {
     firmsData,
+    setFirmsData,
     handleFirmsEdit,
     elToEdit,
     handleElToEdit,
     handleFirmsChange,
     editState,
     setEditState,
+    ownershipsData,
+    setOwnershipsData,
   };
 
   return (
