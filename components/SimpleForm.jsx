@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import FirmContext from "@/context/firmContext";
-function SimpleForm({ type, activeButton, topSet }) {
+function SimpleForm({ type, ownId, topSet }) {
   const { elToEdit, handleFirmsChange, setEditState } = useContext(FirmContext);
   const [inn, setInn] = useState(elToEdit.company_tin);
   const [name, setName] = useState(elToEdit.company_name);
@@ -19,7 +19,7 @@ function SimpleForm({ type, activeButton, topSet }) {
       ...elToEdit,
       company_name: name,
       company_tin: inn,
-      ownership_id: +activeButton,
+      ownership_id: +ownId,
     });
     setEditState(false);
   }

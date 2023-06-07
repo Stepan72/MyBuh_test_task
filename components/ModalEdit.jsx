@@ -10,9 +10,9 @@ let ownTypeIndex;
 function ModalEdit() {
   const { elToEdit } = useContext(FirmContext);
   console.log(elToEdit);
-  if (elToEdit.ownership_id == 0) {
+  if (elToEdit.ownership_id == 1) {
     ownTypeIndex = 0;
-  } else if (elToEdit.ownership_id == 1) {
+  } else if (elToEdit.ownership_id == 14) {
     ownTypeIndex = 1;
   } else {
     ownTypeIndex = 2;
@@ -43,7 +43,7 @@ function ModalEdit() {
           <SimpleForm
             topSet="mt-[40px]"
             type={ownType[activeButton]}
-            activeButton={activeButton}
+            ownId={activeButton === 0 ? 1 : 14}
           />
         )}
         {activeButton == 2 && <ComplexForm />}
